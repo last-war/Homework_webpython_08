@@ -1,8 +1,6 @@
 import argparse
-import encodings.utf_8
 from _datetime import datetime
 import json
-from connector import connect
 from models import Author, Quotes
 
 """
