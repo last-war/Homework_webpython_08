@@ -1,5 +1,5 @@
-from mongoengine import Document, EmbeddedDocument
-from mongoengine.fields import ReferenceField, DateTimeField, EmbeddedDocumentField, ListField, StringField
+from mongoengine import Document, CASCADE
+from mongoengine.fields import ReferenceField, DateTimeField, ListField, StringField
 
 
 class Author(Document):
@@ -9,11 +9,7 @@ class Author(Document):
     description = StringField()
 
 
-class Tag(EmbeddedDocument):
-    name = StringField()
-
-
 class Quotes(Document):
-    tags = ListField(EmbeddedDocumentField(Tag))
-    author = ReferenceField('Author')
+    tags = ListField(StringField())
+    author = ReferenceField(Author, reverse_delete_rule=CASCADE)
     quote = StringField()
